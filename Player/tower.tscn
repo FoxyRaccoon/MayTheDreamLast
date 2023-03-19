@@ -1,0 +1,103 @@
+[gd_scene load_steps=14 format=3 uid="uid://g0roc4jfp3l7"]
+
+[ext_resource type="Script" path="res://Player/Tower.cs" id="1_g2sn7"]
+[ext_resource type="Texture2D" uid="uid://cadju1ssct0p4" path="res://Resources/Sprites/ovni.png" id="2_8etcq"]
+[ext_resource type="PackedScene" path="res://Components/painted_zone.tscn" id="3_mdrbe"]
+[ext_resource type="PackedScene" path="res://Components/painting_zone.tscn" id="4_fn3ou"]
+[ext_resource type="AudioStream" uid="uid://ca58d4rfu28sx" path="res://Resources/Sounds/Powerup 85 (3).wav" id="6_pkdvx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rih1e"]
+radius = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8mip4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tvbti"]
+radius = 80.0
+
+[sub_resource type="Curve" id="Curve_h844q"]
+max_value = 2.0
+_data = [Vector2(0, 1.85455), 0.0, 0.0, 0, 0, Vector2(0.892183, 1.49091), 0.0, 0.0, 0, 0, Vector2(1, 0.563636), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_b0g8o"]
+curve = SubResource("Curve_h844q")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0trkt"]
+emission_shape = 1
+emission_sphere_radius = 10.0
+particle_flag_disable_z = true
+spread = 180.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 80.0
+initial_velocity_max = 100.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_curve = SubResource("CurveTexture_b0g8o")
+hue_variation_max = 0.1
+
+[sub_resource type="Animation" id="Animation_ovl2d"]
+resource_name = "loop"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2e4qd"]
+_data = {
+"loop": SubResource("Animation_ovl2d")
+}
+
+[node name="Tower" type="StaticBody2D"]
+z_index = 1
+script = ExtResource("1_g2sn7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rih1e")
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite"]
+position = Vector2(0, -10)
+texture = ExtResource("2_8etcq")
+hframes = 2
+
+[node name="PaintedZone" parent="." instance=ExtResource("3_mdrbe")]
+position = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PaintedZone"]
+shape = SubResource("CircleShape2D_8mip4")
+
+[node name="PaintingZone" parent="." instance=ExtResource("4_fn3ou")]
+position = Vector2(0, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PaintingZone"]
+shape = SubResource("CircleShape2D_tvbti")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -10)
+amount = 400
+process_material = SubResource("ParticleProcessMaterial_0trkt")
+lifetime = 0.8
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_pkdvx")
+volume_db = -15.0
+max_distance = 500.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "loop"
+libraries = {
+"": SubResource("AnimationLibrary_2e4qd")
+}
+
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="OnAudioFinished"]

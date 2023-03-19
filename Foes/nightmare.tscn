@@ -1,0 +1,348 @@
+[gd_scene load_steps=18 format=3 uid="uid://bhxk787286c74"]
+
+[ext_resource type="Script" path="res://Foes/Nightmare.cs" id="1_he607"]
+[ext_resource type="Texture2D" uid="uid://dlfh0nok8vrp5" path="res://Resources/Sprites/nightmare.png" id="2_450s6"]
+[ext_resource type="AudioStream" uid="uid://x0jrnh20rv83" path="res://Resources/Sounds/Random 57.wav" id="3_irj1d"]
+[ext_resource type="AnimationLibrary" uid="uid://dmpynoidqrute" path="res://Resources/Entity.res" id="4_c4sc5"]
+[ext_resource type="PackedScene" uid="uid://ccx13dbwpk5cy" path="res://World/explosion.tscn" id="5_cb71a"]
+[ext_resource type="PackedScene" path="res://Components/painted_zone.tscn" id="7_i28mx"]
+[ext_resource type="Texture2D" uid="uid://cnrc5tfaqvh7a" path="res://Resources/Sprites/better_light.png" id="7_nm74h"]
+[ext_resource type="Texture2D" uid="uid://bjegittkgad5g" path="res://Resources/Sprites/icons.png" id="8_js81c"]
+[ext_resource type="AudioStream" uid="uid://dn3g6w6k52dus" path="res://Resources/Sounds/Random 52.wav" id="8_qoww4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4f6oc"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_7kcua"]
+resource_name = "Curse"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(30, 30)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"Die"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MalusDisplay:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MalusDisplay:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(8, 8)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_irj1d")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-10.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("AudioStreamPlayer2D:pitch_scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+
+[sub_resource type="Animation" id="Animation_7fy48"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:z_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MalusDisplay:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:stream")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_qoww4")]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer2D:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-15.0]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer2D:pitch_scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i6bsu"]
+_data = {
+"Curse": SubResource("Animation_7kcua"),
+"RESET": SubResource("Animation_7fy48")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lk0xr"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eliqn"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_132fy"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cij0k"]
+_data = {
+"idle": SubResource("Animation_132fy")
+}
+
+[node name="Nightmare" type="CharacterBody2D"]
+script = ExtResource("1_he607")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_4f6oc")
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite"]
+texture = ExtResource("2_450s6")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i6bsu"),
+"Entity": ExtResource("4_c4sc5")
+}
+
+[node name="Explosion" parent="." instance=ExtResource("5_cb71a")]
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="MalusZone" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MalusZone"]
+shape = SubResource("CircleShape2D_lk0xr")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.662745, 0.584314, 0.239216, 1)
+energy = 0.1
+blend_mode = 1
+texture = ExtResource("7_nm74h")
+texture_scale = 0.4
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_qoww4")
+volume_db = -15.0
+max_distance = 800.0
+
+[node name="Timer2" type="Timer" parent="."]
+one_shot = true
+
+[node name="PaintedZone" parent="." instance=ExtResource("7_i28mx")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PaintedZone"]
+shape = SubResource("CircleShape2D_eliqn")
+
+[node name="SpriteAnimation" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_cij0k")
+}
+
+[node name="MalusDisplay" type="Node2D" parent="."]
+visible = false
+z_index = 3
+scale = Vector2(8, 8)
+
+[node name="Sprite2D" type="Sprite2D" parent="MalusDisplay"]
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("8_js81c")
+hframes = 3
+vframes = 3
+frame = 6
+
+[node name="Value" type="CenterContainer" parent="MalusDisplay"]
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 32.0
+offset_bottom = 32.0
+scale = Vector2(0.4, 0.4)
+
+[node name="Label" type="Label" parent="MalusDisplay/Value"]
+layout_mode = 2
+text = "0"
+
+[node name="Effect" type="CenterContainer" parent="MalusDisplay"]
+offset_left = -16.0
+offset_top = 6.0
+offset_right = 10.0
+offset_bottom = 32.0
+scale = Vector2(0.4, 0.4)
+
+[node name="Label" type="Label" parent="MalusDisplay/Effect"]
+layout_mode = 2
+text = "+"
+
+[connection signal="timeout" from="Timer" to="." method="OnTimeOut"]
+[connection signal="body_entered" from="MalusZone" to="." method="OnBodyEntered"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="OnAudioFinished"]
+[connection signal="timeout" from="Timer2" to="." method="OnTimeOut2"]

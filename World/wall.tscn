@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://desbh0gbyx3vk"]
+
+[ext_resource type="Script" path="res://World/Wall.cs" id="1_fy6he"]
+[ext_resource type="Texture2D" uid="uid://cngsiqtdyn83s" path="res://Resources/Sprites/cube.png" id="3_fdctv"]
+[ext_resource type="PackedScene" path="res://Components/painted_zone.tscn" id="3_ldikc"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_84bm8"]
+polygon = PackedVector2Array(-10, -11, -3, -18, 18, -18, 18, 2, 10, 10, -10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyc1j"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_up37t"]
+
+[node name="Wall" type="StaticBody2D"]
+script = ExtResource("1_fy6he")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+position = Vector2(2, -2)
+occluder = SubResource("OccluderPolygon2D_84bm8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -2)
+shape = SubResource("RectangleShape2D_fyc1j")
+
+[node name="PaintedZone" parent="." instance=ExtResource("3_ldikc")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PaintedZone"]
+position = Vector2(2, -2)
+shape = SubResource("RectangleShape2D_up37t")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+
+[node name="Sprite" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(4, -4)
+
+[node name="Behind" type="Sprite2D" parent="Sprite"]
+z_index = -2
+texture = ExtResource("3_fdctv")
+hframes = 2
+vframes = 2
+
+[node name="Sides" type="Sprite2D" parent="Sprite"]
+z_index = -1
+texture = ExtResource("3_fdctv")
+hframes = 2
+vframes = 2
+frame = 1
+
+[node name="Face" type="Sprite2D" parent="Sprite"]
+texture = ExtResource("3_fdctv")
+hframes = 2
+vframes = 2
+frame = 2

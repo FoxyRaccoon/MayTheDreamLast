@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Components/PaintingZone.cs" id="1_rrpfh"]
+
+[node name="PaintingZone" type="Area2D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_rrpfh")

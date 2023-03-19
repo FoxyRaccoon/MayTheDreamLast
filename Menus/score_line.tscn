@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjak4nyec05j3"]
+
+[ext_resource type="Script" path="res://Menus/ScoreLine.cs" id="1_71bb4"]
+
+[node name="ScoreLine" type="HBoxContainer"]
+script = ExtResource("1_71bb4")
+
+[node name="Name" type="Label" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "You are offline"
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 2

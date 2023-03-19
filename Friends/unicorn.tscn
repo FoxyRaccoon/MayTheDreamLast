@@ -1,0 +1,111 @@
+[gd_scene load_steps=13 format=3 uid="uid://dfuv0xhe05cx2"]
+
+[ext_resource type="Script" path="res://Friends/Unicorn.cs" id="1_giwhu"]
+[ext_resource type="Texture2D" uid="uid://cuke2j2pernd1" path="res://Resources/Sprites/unicorn.png" id="2_bodxv"]
+[ext_resource type="PackedScene" path="res://Components/painted_zone.tscn" id="3_ku4ga"]
+[ext_resource type="AnimationLibrary" uid="uid://dmpynoidqrute" path="res://Resources/Entity.res" id="4_0mdy6"]
+[ext_resource type="PackedScene" uid="uid://ccx13dbwpk5cy" path="res://World/explosion.tscn" id="4_fsnie"]
+[ext_resource type="AudioStream" uid="uid://ribj6ulh0iwp" path="res://Resources/Sounds/Jump 89 (28).wav" id="6_mefud"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_xpw1f"]
+polygon = PackedVector2Array(-6, 6, -4, 8, 7, 8, 8, 6, 6, 5, 1, 7, -4, 4)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rmtsp"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mbufj"]
+radius = 8.0
+
+[sub_resource type="Animation" id="Animation_3x8h6"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_fwrae"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ks74n"]
+_data = {
+"idle": SubResource("Animation_3x8h6"),
+"walk": SubResource("Animation_fwrae")
+}
+
+[node name="Unicorn" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 17
+script = ExtResource("1_giwhu")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_xpw1f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rmtsp")
+
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite"]
+position = Vector2(4, -6)
+texture = ExtResource("2_bodxv")
+hframes = 2
+
+[node name="PaintedZone" parent="." instance=ExtResource("3_ku4ga")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PaintedZone"]
+shape = SubResource("CircleShape2D_mbufj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"Entity": ExtResource("4_0mdy6")
+}
+
+[node name="Explosion" parent="." instance=ExtResource("4_fsnie")]
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[node name="SpriteAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ks74n")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_mefud")
+volume_db = -10.0
+pitch_scale = 0.8
+max_distance = 800.0
+
+[node name="Timer2" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="OnTimeOut"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="OnAudioFinished"]
+[connection signal="timeout" from="Timer2" to="." method="OnTimeOut2"]

@@ -1,0 +1,158 @@
+[gd_scene load_steps=10 format=3 uid="uid://b3odp5c868wm0"]
+
+[ext_resource type="Script" path="res://Menus/EndMenu.cs" id="1_xkfux"]
+[ext_resource type="Texture2D" uid="uid://i8vu4itinm0m" path="res://Resources/Sprites/alarm.png" id="2_uh5kp"]
+[ext_resource type="Texture2D" uid="uid://dv6sle10nppay" path="res://Resources/Sprites/alarm_broken.png" id="3_5wg4x"]
+[ext_resource type="AudioStream" uid="uid://cyq6trqu3lh56" path="res://Resources/Sounds/Digital_Alarm.wav" id="4_cocaa"]
+[ext_resource type="PackedScene" uid="uid://cjak4nyec05j3" path="res://Menus/score_line.tscn" id="4_ok3du"]
+[ext_resource type="PackedScene" path="res://Menus/credits.tscn" id="5_tmf4q"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ub3g6"]
+bg_color = Color(0.996078, 0.709804, 0.447059, 1)
+border_width_left = 20
+border_width_top = 10
+border_width_right = 20
+border_width_bottom = 10
+border_color = Color(1, 0.705882, 0.45098, 1)
+shadow_size = 8
+shadow_offset = Vector2(6, 6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_up3hs"]
+bg_color = Color(1, 0.85098, 0.72549, 1)
+border_width_left = 20
+border_width_top = 10
+border_width_right = 20
+border_width_bottom = 10
+border_color = Color(1, 0.85098, 0.72549, 1)
+shadow_size = 8
+shadow_offset = Vector2(6, 6)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_68vcs"]
+bg_color = Color(0.945098, 0.560784, 0.101961, 1)
+border_width_left = 20
+border_width_top = 10
+border_width_right = 20
+border_width_bottom = 10
+border_color = Color(0.945098, 0.560784, 0.101961, 1)
+shadow_size = 8
+shadow_offset = Vector2(6, 6)
+
+[node name="EndMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xkfux")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.337255, 0.407843, 0.764706, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_bottom = 60
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Credits" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ub3g6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_up3hs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_68vcs")
+text = "Credits"
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="Quit" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ub3g6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_up3hs")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_68vcs")
+text = "Quit"
+
+[node name="Label2" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="PlayAgain" type="TextureButton" parent="MarginContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("2_uh5kp")
+texture_pressed = ExtResource("3_5wg4x")
+
+[node name="Label3" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Leaderboard"
+
+[node name="ScoreLine" parent="MarginContainer/CenterContainer/HBoxContainer/MarginContainer/VBoxContainer" instance=ExtResource("4_ok3du")]
+layout_mode = 2
+
+[node name="NewScoreLine" type="HBoxContainer" parent="MarginContainer/CenterContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="LineEdit" parent="MarginContainer/CenterContainer/HBoxContainer/MarginContainer/VBoxContainer/NewScoreLine"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+placeholder_text = "Your name"
+
+[node name="Score" type="Label" parent="MarginContainer/CenterContainer/HBoxContainer/MarginContainer/VBoxContainer/NewScoreLine"]
+layout_mode = 2
+text = "3"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_cocaa")
+autoplay = true
+
+[node name="Credits" parent="." instance=ExtResource("5_tmf4q")]
+visible = false
+layout_mode = 1
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/HBoxContainer/VBoxContainer/Credits" to="." method="OnCreditsPressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/HBoxContainer/VBoxContainer/Quit" to="." method="OnQuitPressed"]
+[connection signal="toggled" from="MarginContainer/CenterContainer/HBoxContainer/PlayAgain" to="." method="OnPlayAgainPressed"]
+[connection signal="text_submitted" from="MarginContainer/CenterContainer/HBoxContainer/MarginContainer/VBoxContainer/NewScoreLine/Name" to="." method="OnAddScoreEntered"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="OnFinished"]

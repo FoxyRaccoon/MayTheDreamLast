@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://ioj0mfiimjps"]
+
+[ext_resource type="Script" path="res://World/World.cs" id="1_66d17"]
+[ext_resource type="PackedScene" uid="uid://cqprwi17txjct" path="res://Player/player.tscn" id="1_wf4pb"]
+[ext_resource type="PackedScene" uid="uid://cc5xnlk3srmwf" path="res://Player/ui.tscn" id="3_xxq1k"]
+
+[sub_resource type="Environment" id="Environment_dfxay"]
+background_mode = 3
+tonemap_mode = 2
+glow_enabled = true
+glow_blend_mode = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssh72"]
+size = Vector2(1600, 1600)
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_y80on"]
+vertices = PackedVector2Array(-800, -800, 800, -800, 800, 800, -800, 800)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-800, 800, 800, 800, 800, -800, -800, -800)])
+
+[node name="World" type="Node2D"]
+y_sort_enabled = true
+texture_filter = 1
+script = ExtResource("1_66d17")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_dfxay")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ssh72")
+
+[node name="Terrain" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Entities" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_wf4pb")]
+
+[node name="Navigation" type="Node2D" parent="."]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Navigation"]
+navigation_polygon = SubResource("NavigationPolygon_y80on")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.6, 0.6, 0.6, 1)
+
+[node name="UI" parent="." instance=ExtResource("3_xxq1k")]
+scale = Vector2(0.8, 0.8)
+
+[connection signal="body_exited" from="Area2D" to="." method="OnBodyExited"]
+[connection signal="timeout" from="Timer" to="." method="OnTimeOut"]

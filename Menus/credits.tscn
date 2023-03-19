@@ -1,0 +1,195 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Texture2D" uid="uid://cus1gnkgtrgun" path="res://Resources/Logos/foxyraccoon_circle_small.png" id="1_kh4tq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_phj84"]
+font_size = 40
+
+[sub_resource type="LabelSettings" id="LabelSettings_xxo3c"]
+font_size = 24
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 60
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.909804, 0.47451, 0.54902, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "May The Dream Last"
+label_settings = SubResource("LabelSettings_phj84")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game Design"
+label_settings = SubResource("LabelSettings_xxo3c")
+horizontal_alignment = 1
+
+[node name="Label11" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fireye025 (FoxyRaccoon)"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Game Developper"
+label_settings = SubResource("LabelSettings_xxo3c")
+horizontal_alignment = 1
+
+[node name="Label12" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fireye025 (FoxyRaccoon)"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "UI/UX"
+label_settings = SubResource("LabelSettings_xxo3c")
+horizontal_alignment = 1
+
+[node name="Label13" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fireye025 (FoxyRaccoon)"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Art and Design"
+label_settings = SubResource("LabelSettings_xxo3c")
+horizontal_alignment = 1
+
+[node name="Label14" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fireye025 (FoxyRaccoon)"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Music"
+label_settings = SubResource("LabelSettings_xxo3c")
+horizontal_alignment = 1
+
+[node name="Label15" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Abstraction - Three Red Hearts: Prepare to Dev Edition"
+horizontal_alignment = 1
+
+[node name="CenterContainer3" type="CenterContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LinkButton2" type="LinkButton" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer3"]
+layout_mode = 2
+text = "Abstraction homepage"
+uri = "http://www.abstractionmusic.com/"
+
+[node name="Label7" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Sounds"
+label_settings = SubResource("LabelSettings_xxo3c")
+horizontal_alignment = 1
+
+[node name="Label17" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "GameSupplyGuy - 1000+NintendoSFX!"
+horizontal_alignment = 1
+
+[node name="CenterContainer4" type="CenterContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LinkButton2" type="LinkButton" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer4"]
+layout_mode = 2
+text = "Soundpack link"
+uri = "https://gamesupply.itch.io/1000-nintendo-sound-effects"
+
+[node name="Label16" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Coffee 'Valen' Bat - Sweet Sounds (Digital Alarm)"
+horizontal_alignment = 1
+
+[node name="CenterContainer5" type="CenterContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LinkButton2" type="LinkButton" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer5"]
+layout_mode = 2
+text = "Soundpack link"
+uri = "https://benjaminno.itch.io/sweet-sounds-sfx-pack"
+
+[node name="Label8" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "A game by FoxyRaccoon"
+label_settings = SubResource("LabelSettings_xxo3c")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_kh4tq")
+stretch_mode = 3
+
+[node name="Label9" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join me on my medias"
+label_settings = SubResource("LabelSettings_xxo3c")
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LinkButton2" type="LinkButton" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+text = "All my links"
+uri = "https://allmylinks.com/foxyraccoon"
+
+[node name="Label10" type="Label" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Source code of the game available on github"
+horizontal_alignment = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LinkButton2" type="LinkButton" parent="MarginContainer/HBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/CenterContainer2"]
+layout_mode = 2
+text = "All my links"
+uri = "https://allmylinks.com/foxyraccoon"
