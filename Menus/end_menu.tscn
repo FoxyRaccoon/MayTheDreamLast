@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dv6sle10nppay" path="res://Resources/Sprites/alarm_broken.png" id="3_5wg4x"]
 [ext_resource type="AudioStream" uid="uid://cyq6trqu3lh56" path="res://Resources/Sounds/Digital_Alarm.wav" id="4_cocaa"]
 [ext_resource type="PackedScene" uid="uid://cjak4nyec05j3" path="res://Menus/score_line.tscn" id="4_ok3du"]
-[ext_resource type="PackedScene" path="res://Menus/credits.tscn" id="5_tmf4q"]
+[ext_resource type="PackedScene" uid="uid://cq3r6gtrqrfab" path="res://Menus/credits.tscn" id="5_tmf4q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ub3g6"]
 bg_color = Color(0.996078, 0.709804, 0.447059, 1)
